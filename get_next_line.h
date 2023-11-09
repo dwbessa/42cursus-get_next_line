@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:19:01 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/03 10:11:31 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/09 15:37:54 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ typedef struct s_list
 }				t_list;
 
 
-char	*get_next_line(int fd);
-ft_strdup
-ft_strjoin
-read(int fd, void *buf, size_t nbyte)
+char			*get_next_line(int fd);
+t_list			*ft_lstnew(void *content);
+t_list			*ft_lstlast(t_list *lst);
+void			ft_lstadd_back(t_list **lst, t_list *new);
+void			ft_freeone(t_list *lst);
+void			ft_lstfree(t_list **lst);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif
