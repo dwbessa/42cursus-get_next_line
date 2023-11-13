@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/13 16:18:39 by dbessa           ###   ########.fr       */
+/*   Created: 2023/11/13 15:46:11 by dbessa            #+#    #+#             */
+/*   Updated: 2023/11/13 16:41:14 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include <stdio.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+#include <string.h>
 
-char	*get_next_line(int fd)
+int	main()
 {
-    static char	*bff;
-	char		temp[256];
-	int		number;
-	
-	while ((number = read(fd, temp, BUFFER_SIZE)))
+	int	fd;
+	static char *fica_aqui;
+	char buf[257];
+	int	chars_read;
+
+	fd = open("text.txt", O_RDONLY);
+	while ((chars_read = read(fd, buf, BUFFER_SIZE)))
 	{
-		bff[number] = '\0';
-		printf("%s\n", bff);
+		buf[chars_read] = '\0';
+		if (strchr(buf, '\n'))
+			printf("linha -> %s\n", buf)
+		printf("linha -> %s\n", buf);
 	}
-	return (0);
+	close(fd);
 }
