@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 13:49:18 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 15:02:10 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*read_line(char *store, int fd)
 	temp = malloc(BUFFER_SIZE + 1);
 	if (!temp)
 		return (NULL);
-	while (!ft_strchr(store, 10) && read_len > 0)
+	while (read_len > 0 && !ft_strchr(store, 10))
 	{
 		read_len = read(fd, temp, BUFFER_SIZE);
 		if (read_len < 0)
@@ -58,6 +58,10 @@ static char	*read_line(char *store, int fd)
 		store = ft_strjoin(store, temp);
 	}
 	free(temp);
+	if (read_len == 0 && store && *store)
+		return (store);
+	else if (read_len == 0)
+		return (NULL);
 	return (store);
 }
 

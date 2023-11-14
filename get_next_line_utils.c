@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:18:51 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 13:44:53 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 15:22:03 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ char	*ft_strdup(const char *src)
 	index = 0;
 	d = malloc(ft_strlen(src) * sizeof(char) + 1);
 	if (!d)
-	{
 		return (NULL);
-	}
 	while (src[index])
 	{
 		d[index] = src[index];
@@ -42,7 +40,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	count1;
 	size_t	count2;
@@ -57,12 +55,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s3 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!s3)
 		return (NULL);
-	while (count1 != ft_strlen(s1))
+	while (s1[count1])
 	{
 		s3[count1] = s1[count1];
 		count1++;
 	}
-	while (count2 != ft_strlen(s2))
+	while (s2[count2])
 	{
 		s3[count1 + count2] = s2[count2];
 		count2++;
