@@ -6,11 +6,11 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:18:51 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/13 16:12:30 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 11:38:06 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <get_next_line.h>
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
-}2
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -38,57 +38,50 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s3)
 		return (NULL);
 	while (count1 != ft_strlen(s1))
-		s3[count1] = s1[count1++];
+	{
+		s3[count1] = s1[count1];
+		count1++;
+	}
 	while (count2 != ft_strlen(s2))
-		s3[count1 + count2] = s2[count2++];
+	{
+		s3[count1 + count2] = s2[count2];
+		count2++;
+	}
 	s3[count1 + count2] = '\0';
 	return (s3);
 }
 
-t_list	*ft_lstnew(void *content)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*new;
+	int	i;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*temp;
-
-	if (!*lst)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		*lst = new;
-		return ;
+		if (s[i] == c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	temp = *lst;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new;
+	if (c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
 }
 
-void	ft_freeone(t_list *lst)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (!lst)
-		return ;
-	free(lst);
-}
+	size_t	srcsize;
+	size_t	j;
 
-void	ft_lstfree(t_list **lst)
-{
-	t_list	*aux;
-
-	if (!lst)
-		return ;
-	while ((*lst) != NULL)
+	srcsize = ft_strlen(src);
+	j = 0;
+	if (size > 0)
 	{
-		aux = (*lst)->next;
-		ft_freeone(*lst);
-		*lst = aux;
+		while (src[j] != '\0' && j < size - 1)
+		{
+			dst[j] = src[j];
+			j++;
+		}
+		dst[j] = '\0';
 	}
+	return (srcsize);
 }
