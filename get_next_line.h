@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:19:01 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 11:43:16 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 13:20:32 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}				t_list;
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 10
@@ -31,5 +25,7 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strjoin(char const *s1, char const *s2);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
-
+static char		*save_new_line(char *store);
+static char		*actual_line(char *store);
+static char		*read_line(char *store, int fd);
 #endif
