@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:18:51 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 15:22:03 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 18:17:32 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ char	*ft_strjoin(char *s1, char *s2)
 		count1++;
 	}
 	while (s2[count2])
-	{
-		s3[count1 + count2] = s2[count2];
-		count2++;
-	}
-	s3[count1 + count2] = '\0';
+		s3[count1++] = s2[count2++];
+	s3[count1] = '\0';
+	free(s1);
 	return (s3);
 }
 
@@ -92,6 +90,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	srcsize;
 	size_t	j;
 
+	if ((!dst || !src) && !size)
+		return (0);
 	srcsize = ft_strlen(src);
 	j = 0;
 	if (size > 0)

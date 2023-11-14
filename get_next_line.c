@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 15:02:10 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:59:16 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 static char	*save_new_line(char *store)
 {
 	char	*save;
+	size_t	new_line_size;
 
 	if (!store)
 		return (NULL);
-	save = ft_strchr(store, 10) + 1;
-	free(store);
+	new_line_size = ft_strlen(ft_strchr(store, 10) + 1) + 1;
+	save = malloc(new_line_size);
+	if (!save)
+		return (NULL);
+	ft_strlcpy(save, ft_strchr(store, 10) + 1, new_line_size);
 	return (save);
 }
 
