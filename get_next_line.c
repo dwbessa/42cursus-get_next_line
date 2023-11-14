@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 13:28:40 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/14 13:49:18 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	*get_next_line(int fd)
 	static char	*store;
 	char		*ret;
 
-	store = "";
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	store = read_line(store, fd);
