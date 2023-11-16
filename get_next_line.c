@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 16:59:16 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/16 12:38:09 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ static char	*save_new_line(char *store)
 
 	if (!store)
 		return (NULL);
-	new_line_size = ft_strlen(ft_strchr(store, 10) + 1) + 1;
+	if (ft_strchr(store, 10))
+		new_line_size = ft_strlen(ft_strchr(store, 10) + 1) + 1;
+	else
+		new_line_size = ft_strlen(store) + 1;
 	save = malloc(new_line_size);
 	if (!save)
 		return (NULL);
-	ft_strlcpy(save, ft_strchr(store, 10) + 1, new_line_size);
+	if (ft_strchr(store, 10))
+		ft_strlcpy(save, ft_strchr(store, 10) + 1, new_line_size);
+	else
+		ft_strlcpy(save, store, new_line_size);
+	free(store);
 	return (save);
 }
 
@@ -32,8 +39,15 @@ static char	*actual_line(char *store)
 {
 	size_t	ret_size;
 	char	*ret;
+	size_t	len;
 
-	ret_size = (ft_strlen(store)) - (ft_strlen(ft_strchr(store, 10) + 1)) + 1;
+	len = ft_strlen(ft_strchr(store, 10) + 1);
+	if (!*store)
+		return (NULL);
+	if (ft_strchr(store, 10))
+		ret_size = (ft_strlen(store)) - len + 1;
+	else
+		ret_size = ft_strlen(store) + 1;
 	ret = malloc(ret_size);
 	if (!ret)
 		return (NULL);
@@ -62,10 +76,11 @@ static char	*read_line(char *store, int fd)
 		store = ft_strjoin(store, temp);
 	}
 	free(temp);
-	if (read_len == 0 && store && *store)
-		return (store);
-	else if (read_len == 0)
+	if (read_len == 0)
+	{
+		free(store);
 		return (NULL);
+	}
 	return (store);
 }
 
