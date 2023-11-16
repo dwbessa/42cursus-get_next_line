@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/16 12:38:09 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/16 12:54:48 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static char	*actual_line(char *store)
 	char	*ret;
 	size_t	len;
 
-	len = ft_strlen(ft_strchr(store, 10) + 1);
 	if (!*store)
 		return (NULL);
+	len = ft_strlen(ft_strchr(store, 10) + 1);
 	if (ft_strchr(store, 10))
 		ret_size = (ft_strlen(store)) - len + 1;
 	else
