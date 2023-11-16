@@ -6,19 +6,20 @@
 /*   By: vde-vasc <vde-vasc@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/16 14:52:37 by vde-vasc         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:01:33 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static char	*save_new_line(char *store)
 {
 	char	*save;
 	size_t	new_line_size;
-	int i = 0;
+	size_t	i;
 
+	i = 0;
+	new_line_size = 1;
 	while (store[i] && store[i] != '\n')
 		i++;
 	if (!store[i])
@@ -26,8 +27,6 @@ static char	*save_new_line(char *store)
 		free(store);
 		return (NULL);
 	}
-	if (!store)
-		return (NULL);
 	if (ft_strchr(store, 10))
 		new_line_size = ft_strlen(ft_strchr(store, 10) + 1) + 1;
 	save = malloc(new_line_size);
@@ -81,11 +80,6 @@ static char	*read_line(char *store, int fd)
 		store = ft_strjoin(store, temp);
 	}
 	free(temp);
-/* 	if (read_len == 0)
-	{
-		free(store);
-		return (NULL);
-	} */
 	return (store);
 }
 

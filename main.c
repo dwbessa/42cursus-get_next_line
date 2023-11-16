@@ -20,8 +20,8 @@ int	main()
 	int	fd;
 	char *imprime;
 
-	fd = open("gnlTester/files/41_no_nl", O_RDWR);
-	for (int i = 0; i < 2; i++)
+	fd = open("lorem.txt", O_RDWR);
+	for (int i = 0; i < 6; i++)
 	{
 		imprime = get_next_line(fd);
 		printf("%s", imprime);
