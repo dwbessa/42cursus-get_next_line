@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
+/*   By: vde-vasc <vde-vasc@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 20:17:54 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/16 12:54:48 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:52:37 by vde-vasc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,19 @@ static char	*save_new_line(char *store)
 {
 	char	*save;
 	size_t	new_line_size;
+	int i = 0;
 
+	while (store[i] && store[i] != '\n')
+		i++;
+	if (!store[i])
+	{
+		free(store);
+		return (NULL);
+	}
 	if (!store)
 		return (NULL);
 	if (ft_strchr(store, 10))
 		new_line_size = ft_strlen(ft_strchr(store, 10) + 1) + 1;
-	else
-		new_line_size = ft_strlen(store) + 1;
 	save = malloc(new_line_size);
 	if (!save)
 		return (NULL);
@@ -43,11 +49,10 @@ static char	*actual_line(char *store)
 
 	if (!*store)
 		return (NULL);
-	len = ft_strlen(ft_strchr(store, 10) + 1);
-	if (ft_strchr(store, 10))
-		ret_size = (ft_strlen(store)) - len + 1;
-	else
-		ret_size = ft_strlen(store) + 1;
+	len = 0;
+	while (store[len] && store[len] != '\n')
+		len++;
+	ret_size = (len + 2);
 	ret = malloc(ret_size);
 	if (!ret)
 		return (NULL);
@@ -76,11 +81,11 @@ static char	*read_line(char *store, int fd)
 		store = ft_strjoin(store, temp);
 	}
 	free(temp);
-	if (read_len == 0)
+/* 	if (read_len == 0)
 	{
 		free(store);
 		return (NULL);
-	}
+	} */
 	return (store);
 }
 

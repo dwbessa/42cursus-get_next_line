@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
+/*   By: vde-vasc <vde-vasc@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:46:11 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/14 16:33:37 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:40:02 by vde-vasc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ int	main()
 	int	fd;
 	char *imprime;
 
-	fd = open("lorem.txt", O_RDWR);
-	imprime = get_next_line(fd);
-	printf("%s", imprime);
+	fd = open("gnlTester/files/41_no_nl", O_RDWR);
+	for (int i = 0; i < 2; i++)
+	{
+		imprime = get_next_line(fd);
+		printf("%s", imprime);
+	}
 	free(imprime);
 	close (fd);
 	return (0);
