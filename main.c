@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-vasc <vde-vasc@student.42.rio>         +#+  +:+       +#+        */
+/*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 15:46:11 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/16 14:40:02 by vde-vasc         ###   ########.fr       */
+/*   Created: 2023/11/17 09:25:47 by dbessa            #+#    #+#             */
+/*   Updated: 2023/11/17 09:28:42 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 #include "get_next_line.h"
 #include <string.h>
 
-int	main()
+int	main(void)
 {
-	int	fd;
-	char *imprime;
+	int		fd;
+	char	*imprime;
+	int		i;
 
+	i = 0;
 	fd = open("lorem.txt", O_RDWR);
-	for (int i = 0; i < 6; i++)
+	while (i < 6)
 	{
 		imprime = get_next_line(fd);
 		printf("%s", imprime);
+		i++;
 	}
 	free(imprime);
 	close (fd);
