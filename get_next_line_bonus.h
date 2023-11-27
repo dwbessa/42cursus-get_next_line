@@ -6,7 +6,7 @@
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:41:26 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/21 09:04:35 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/27 12:46:28 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 # ifndef MAX_FD
-#  define MAX_FD 256
+#  define MAX_FD 1000
 # endif
 
 char			*get_next_line(int fd);

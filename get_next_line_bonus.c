@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbessa <dbessa@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:46:28 by dbessa            #+#    #+#             */
-/*   Updated: 2023/11/17 09:46:34 by dbessa           ###   ########.fr       */
+/*   Updated: 2023/11/27 12:44:17 by dbessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 	static char	*store[MAX_FD];
 	char		*ret;
 
-	if ((fd < 0 || BUFFER_SIZE <= 0) || read(fd, &ret, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	store[fd] = read_line(store[fd], fd);
 	if (!store[fd])
