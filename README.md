@@ -19,28 +19,12 @@ This project provides a `get_next_line` function written in C to read content fr
 
 **Example Usage (in `main.c`):**
 
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <string.h>
+``cc -Wall -Werror -Wextra main.c get_next_line.c get_next_line_utils.c -o gnl``
+``./gnl``
+* This usage will read all lorem.txt file
 
-int	main(void)
-{
-	int		fd;
-	char	*imprime;
-	int		i;
+**Example Usage Bonus Part (in `main_bonus.c`):**
 
-	i = 0;
-	fd = open("lorem.txt", O_RDWR);
-	while (i < 6)
-	{
-		imprime = get_next_line(fd);
-		printf("%s", imprime);
-		i++;
-	}
-	free(imprime);
-	close (fd);
-	return (0);
-}
-```
+``cc -Wall -Werror -Wextra main_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c -o gnl_bonus``
+``./gnl_bonus``
+* This usage will read two lines for lorem.txt, lorem-invert.txt and lorem-mussum.txt files
