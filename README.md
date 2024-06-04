@@ -20,19 +20,27 @@ This project provides a `get_next_line` function written in C to read content fr
 **Example Usage (in `main.c`):**
 
 ```c
+#include <stdio.h>
+#include <fcntl.h>
 #include "get_next_line.h"
+#include <string.h>
 
-int main() {
-  int fd = open("myfile.txt", O_RDONLY); // Replace "myfile.txt" with your file path
-  char *line;
+int	main(void)
+{
+	int		fd;
+	char	*imprime;
+	int		i;
 
-  while ((line = get_next_line(fd)) != NULL) {
-    // Process the line
-    printf("%s", line);
-    free(line); // Free the memory allocated for the line
-  }
-
-  close(fd);
-  return 0;
+	i = 0;
+	fd = open("lorem.txt", O_RDWR);
+	while (i < 6)
+	{
+		imprime = get_next_line(fd);
+		printf("%s", imprime);
+		i++;
+	}
+	free(imprime);
+	close (fd);
+	return (0);
 }
 ```
